@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>d3.js</file>
+        <file>d3.min.js</file>
+    </qresource>
+</RCC>
