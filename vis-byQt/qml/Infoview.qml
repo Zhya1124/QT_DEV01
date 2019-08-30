@@ -63,6 +63,8 @@ Rectangle {
             //source: info_img;//这个要载入的图片的地址参数
             source: "../image/guixie.png";
             //source: "../image/tiffPic/chrome.bmp";//测试读bmp
+            //source: "file:///D:/Picture/Clothes/978-7-5180-1663-1-100.tif";//本地读取tiff
+            //source: "../image/tiffPic/978-7-5180-1663-1-65.tif";//相对路径读tiff***失败
             //使图片居中，注意这里要实现拖动的话就不能用锚定位。
             x:info_img02_border.width/2 - info_img02.width/2;
             y:info_img02_border.height/2 - info_img02.height/2;
@@ -70,32 +72,7 @@ Rectangle {
             asynchronous: true;//因为可能需要加载大图片须开启异步模式
             smooth: true;
 
-            MouseArea
-            {
-                id:info_img02_dragArea;
-                anchors.fill: info_img02;
-                drag.target: info_img02;
-                drag.axis: Drag.XAndYAxis;//设置拖拽的方式
-                drag.minimumX: (info_img02.width > info_img02_border.width)?(info_img02_border.width - info_img02.width):0;
-                drag.maximumX: (info_img02.width > info_img02_border.width)?0:(info_img02_border.width - info_img02.width);
-                drag.minimumY: (info_img02.height > info_img02_border.height)?(info_img02_border.height - info_img02.height):0;
-                drag.maximumY: (info_img02.height > info_img02_border.height)?0:(info_img02_border.height - info_img02.height);
-                //滚动也可以进行缩放
-                onWheel:
-                {
-                    var delta = wheel.angleDelta.y / 120;
-                    if(delta > 0)//放大
-                    {
-                        if(info_img02.scale<1.6)
-                        info_img02.scale = info_img02.scale/0.9;
-                    }
-                    else
-                    {
-                        if(info_img02.scale>0.05)
-                        info_img02.scale = info_img02.scale*0.9;
-                    }
-                }
-            }
+
             onStatusChanged: {
                     if(info_img02.status === Image.Ready)
                     {
@@ -111,6 +88,32 @@ Rectangle {
                         stateLable.visible = true;
                         stateLable.text = "图片读取出错！";
                     }
+            }
+        }
+        MouseArea//拖拽区域
+        {
+            id:info_img02_dragArea;
+            anchors.fill: info_img02;
+            drag.target: info_img02;
+            drag.axis: Drag.XAndYAxis;//设置拖拽的方式
+            drag.minimumX: (info_img02.width > info_img02_border.width)?(info_img02_border.width - info_img02.width):0;
+            drag.maximumX: (info_img02.width > info_img02_border.width)?0:(info_img02_border.width - info_img02.width);
+            drag.minimumY: (info_img02.height > info_img02_border.height)?(info_img02_border.height - info_img02.height):0;
+            drag.maximumY: (info_img02.height > info_img02_border.height)?0:(info_img02_border.height - info_img02.height);
+            //滚动也可以进行缩放
+            onWheel:
+            {
+                var delta = wheel.angleDelta.y / 120;
+                if(delta > 0)//放大
+                {
+                    if(info_img02.scale<1.6)
+                    info_img02.scale = info_img02.scale/0.9;
+                }
+                else
+                {
+                    if(info_img02.scale>0.05)
+                    info_img02.scale = info_img02.scale*0.9;
+                }
             }
         }
     }
