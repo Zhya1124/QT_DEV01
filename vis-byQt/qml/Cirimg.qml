@@ -1,34 +1,48 @@
-import QtQuick 2.0
-import QtGraphicalEffects 1.0
+import QtQuick              2.7
+import QtQuick.Controls     2.0
+import QtQuick.Layouts      1.3
+import QtGraphicalEffects   1.0
 
-Rectangle {
-    id: cirImg;
+import QuickQanava          2.0 as Qan
+import "qrc:/QuickQanava"   as Qan
 
-    property url cuted_img;
+Qan.NodeItem {
+    id: cirVisNodeItem
+
     property int img_width;
     property int img_height;
-    property int arcWidth;
-    property color arcColor;
-    property color arcBackgroundColor;
-    property real  progress: 0;
+    property int radius;
+    property real progress: 300
+    property color arcColor: "#50616d"
+    property color arcBackgroundColor: "#50616d"
+    property int arcWidth: 2
+    Layout.preferredWidth: 100
+    Layout.preferredHeight: 100
+    width: Layout.preferredWidth
+    height: Layout.preferredHeight
 
-    //anchors.centerIn: parent;
-    color: "transparent";
-    width: img_width;
-    height: img_height;
-    radius: width/2;
+    img_width: 100
+    img_height: 100
 
-    Image{
-        id: cir_Img;
-        smooth: true;
-        visible: false;
-        anchors.fill: parent;
-        source: cuted_img;
-        sourceSize: Qt.size(parent.size, parent.size)
+    Image {
+        id: image
+        //z: 1
+        visible: false
+        anchors.fill: parent
+        smooth: true
+        source: cirVisNodeItem.node.image
         antialiasing: true
+        /*onSourceSizeChanged: {
+            if ( sourceSize.width > 0 &&
+                 sourceSize.height > 0 ) {
+                cirVisNodeItem.ratio = sourceSize.width / sourceSize.height;
+                // FIXME: generate a clean initial size here
+            } else
+                cirVisNodeItem.ratio = -1.;
+        }*/
     }
-
     Rectangle {
+        //z:3
         id: cir_mask
         color: "black"
         anchors.fill: parent
@@ -37,21 +51,21 @@ Rectangle {
         antialiasing: true
         smooth: true
     }
-
     OpacityMask {
+        //z:3
         id: mask_image
-        anchors.fill: cir_Img
-        source:cir_Img
+        anchors.fill: image
+        source: image
         maskSource: cir_mask
         visible: true
         antialiasing: true
     }
-
     Canvas{
+        //z:3
         id: canvas
         anchors.centerIn: mask_image
-        width: 2*img_width + arcWidth
-        height: 2*img_height + arcWidth
+        width: img_width + arcWidth
+        height: img_height + arcWidth
         onPaint: {
             var ctx = getContext("2d")
             ctx.clearRect(0,0,canvas.width,canvas.height)

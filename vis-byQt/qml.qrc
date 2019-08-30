@@ -15,7 +15,6 @@
         <file>qml/Toolbar.qml</file>
         <file>qml/Button2.qml</file>
         <file>qml/Infoview.qml</file>
-        <file>qml/Button_Image.qml</file>
         <file>qml/Button3.qml</file>
         <file>qml/Dialog_info.qml</file>
         <file>qml/Dialog_input.qml</file>

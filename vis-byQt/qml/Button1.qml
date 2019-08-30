@@ -19,14 +19,12 @@ Button{
             color: "transparent";
             //border.width:control.pressed?4:2
             BorderImage
-                {
-                   anchors.fill: parent;
-                   source: control.hovered ? (control.pressed ? pressedPic : hoverPic) : normalPic;
+            {
+                anchors.fill: parent;
+                source: control.hovered ? (control.pressed ? pressedPic : hoverPic) : normalPic;
 
-                }
             }
         }
     }
-
-
+}
 

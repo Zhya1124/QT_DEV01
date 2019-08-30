@@ -15,16 +15,20 @@
 
 /*
     8/24 建立file_process类来处理json文件的增删改查
-    8/26 添加addRole函数 向json文件中添加nodes中的信息
- */
 
+
+    8/26 添加addRole函数 向json文件中添加nodes中的信息
+*/
 
 class FileProcess:public QObject
 {
     Q_OBJECT
+
 public:
-    FileProcess(); //构造函数
-    ~FileProcess(); //析构函数
+
+    FileProcess();  //构造函数
+    ~FileProcess();  //析构函数
+
 
     //变量
     Q_PROPERTY(QString content READ readJsonFile WRITE writeJsonFile)
@@ -45,11 +49,12 @@ public:
 
     Q_INVOKABLE void writeJsonFile(QString name);
     Q_INVOKABLE void addRole(QString name,QString imagPath);
+
+
 private:
 
     QString filePath;
     QJsonObject root;
-
 
 };
 

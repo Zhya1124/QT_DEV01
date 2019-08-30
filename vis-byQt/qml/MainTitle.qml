@@ -1,8 +1,12 @@
 import QtQuick 2.0
+
+//标题栏
+
+
 /*
    8/22 添加了点击标题栏可以隐藏下拉工具栏的功能，添加了onclicked函数  -L
 */
-//标题栏
+
 Rectangle {
     id: mainTitle;
 
@@ -18,7 +22,7 @@ Rectangle {
         anchors.left: mainTitle.left;
 
         fillMode: Image.TileHorizontally;
-        source: "../image/标题栏@2x.png";
+        source: "../image/maintitle@2x.png";
     }
 
     Text {
@@ -53,10 +57,11 @@ Rectangle {
         }
         onClicked:
         {
-              rec_file.visible = false;
-              rec_help.visible = false;
-              menuAllMouseArea.visible = false;
-         }
+            rec_file.visible = false;
+            rec_help.visible = false;
+            menuAllMouseArea.visible = false;
+        }
+
     }
 
 }

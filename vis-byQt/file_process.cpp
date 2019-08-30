@@ -1,25 +1,29 @@
-#include "file_process.h"
-#include <QDebug>
-FileProcess::FileProcess()//构造函数
+#include<file_process.h>
+#include<QDebug>
+
+FileProcess::FileProcess() //构造函数
 {
 
 }
-FileProcess::~FileProcess()//析构函数
+
+FileProcess::~FileProcess() //析构函数
 {
 
 }
 
 //函数
-bool FileProcess::readJsonFile() //读取文件内容
+bool FileProcess::readJsonFile()//读取文件内容
 {
+    //Graph graph = Graph();
+
     if(filePath.startsWith("file"))
     {
-        filePath = filePath.mid(8,filePath.length()-7);
+      filePath = filePath.mid(8,filePath.length()-7);
     }
     qDebug()<<"path: "<<filePath<<endl;
 
     QFile loadFile(filePath);
-
+    qDebug()<<loadFile.exists();
     if(!loadFile.open(QIODevice::ReadOnly))
     {
         qDebug()<<"打开文件失败";
@@ -49,13 +53,13 @@ bool FileProcess::readJsonFile() //读取文件内容
     if(rootObj.contains("nodes"))
     {
         QJsonArray subObj = rootObj.value("nodes").toArray();
+
         int len = subObj.size();
         for(int i=0;i<len;i++)
         {
         QJsonObject tempObj = subObj[i].toObject();
-         //qDebug()<< "nodes_obj:"<<tempObj;
          qDebug() << "id is:"<<index++;
-         qDebug() << "nameObj is:"<< tempObj["name"].toString();
+         qDebug() << "name is:"<<tempObj["name"].toString();
          qDebug() << "image is:" << tempObj["image"].toString();
          }
          //Node node_temp = Node(subObj["name"].toString(),subObj["image"].toString());
@@ -78,10 +82,11 @@ bool FileProcess::readJsonFile() //读取文件内容
     return true;
 }
 
-void FileProcess::writeJsonFile(QString content)
+void FileProcess::writeJsonFile(QString name)
 {
 
 }
+
 
 void FileProcess::addRole(QString name,QString Imagesource)
 {

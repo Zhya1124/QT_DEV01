@@ -1,66 +1,63 @@
 <RCC>
     <qresource prefix="/">
-        <file>image/v2-43126f5d8305fcbfac32a88fd89eefc1_r.jpg</file>
+        <file>image/background@2x.png</file>
         <file>image/chanyou.png</file>
         <file>image/guixie.png</file>
         <file>image/lingsha.png</file>
+        <file>image/maintitle@2x.png</file>
         <file>image/mengli.png</file>
         <file>image/suyao.png</file>
         <file>image/suyu.png</file>
         <file>image/taiqing.png</file>
         <file>image/tianhe.png</file>
         <file>image/tianqing.png</file>
+        <file>image/v2-43126f5d8305fcbfac32a88fd89eefc1_r.jpg</file>
         <file>image/xizhong.png</file>
         <file>image/xuanxiao.png</file>
         <file>image/ziying.png</file>
         <file>image/zonglian.png</file>
-        <file>image/vis/逻辑栏@2x.png</file>
-        <file>image/background@2x.png</file>
-        <file>image/标题栏@2x.png</file>
-        <file>image/vis/可视化视图栏@2x.png</file>
-        <file>image/vis/逻辑显示框@2x.png</file>
-        <file>image/icon/关闭icon@2x.png</file>
-        <file>image/icon/最大化-还原icon@2x.png</file>
-        <file>image/icon/最小化@2x.png</file>
-        <file>image/tool/工具栏@2x.png</file>
-        <file>image/tool/帮助icon@2x.png</file>
-        <file>image/tool/画图icon@2x.png</file>
-        <file>image/tool/文件icon@2x.png</file>
-        <file>image/info/图像信息栏@2x.png</file>
-        <file>image/info/属性@2x.png</file>
-        <file>image/info/属性显示框@2x.png</file>
-        <file>image/info/未加载图片选框@2x.png</file>
-        <file>image/info/下拉按钮@2x.png</file>
-        <file>image/info/放大icon@2x.png</file>
-        <file>image/info/缩小icon@2x.png</file>
-        <file>image/info/放大icon-未选中@2x.png</file>
-        <file>image/info/放大icon-移至icon@2x.png</file>
-        <file>image/info/缩小icon-未选中@2x.png</file>
-        <file>image/info/缩小icon-移至icon@2x.png</file>
-        <file>image/tool/保存@2x.png</file>
-        <file>image/tool/功能介绍-1@2x.png</file>
-        <file>image/tool/另存为@2x.png</file>
-        <file>image/tool/软件信息-1@2x.png</file>
-        <file>image/tool/数据导入@2x.png</file>
-        <file>image/tool/数据导入-点击@2x.png</file>
-        <file>image/tool/数据导入-未选中@2x.png</file>
-        <file>image/tool/文件、帮助-点击@2x.png</file>
-        <file>image/tool/文件、帮助-未选中@2x.png</file>
-        <file>image/icon/最小化移至icon@2x.png</file>
-        <file>image/icon/关闭-点击@2x.png</file>
-        <file>image/icon/关闭-未选中@2x.png</file>
-        <file>image/icon/关闭移至icon@2x.png</file>
-        <file>image/icon/最大化-还原icon-点击@2x.png</file>
-        <file>image/icon/最大化-还原icon-未选中@2x.png</file>
-        <file>image/icon/最大化-还原icon移至icon@2x.png</file>
-        <file>image/icon/最小化-点击@2x.png</file>
-        <file>image/icon/最小化-未选中@2x.png</file>
-        <file>image/dialog/取消@2x.png</file>
-        <file>image/dialog/底@2x.png</file>
-        <file>image/dialog/确认@2x.png</file>
-        <file>image/dialog/背景图@2x.png</file>
-        <file>image/dialog/输入数据框@2x.png</file>
-        <file>image/dialog/顶栏@2x.png</file>
-        <file>image/tool/矩形 11@2x.png</file>
+        <file>image/dialog/background@2x.png</file>
+        <file>image/dialog/bottom@2x.png</file>
+        <file>image/dialog/cancel@2x.png</file>
+        <file>image/dialog/confirm@2x.png</file>
+        <file>image/dialog/dataInput@2x.png</file>
+        <file>image/dialog/top@2x.png</file>
+        <file>image/info/attributes@2x.png</file>
+        <file>image/info/attributesShow@2x.png</file>
+        <file>image/info/dropBtn@2x.png</file>
+        <file>image/info/image_notloaded@2x.png</file>
+        <file>image/info/imageInfo@2x.png</file>
+        <file>image/tool/dataImport@2x.png</file>
+        <file>image/tool/draw@2x.png</file>
+        <file>image/tool/features-1@2x.png</file>
+        <file>image/tool/file@2x.png</file>
+        <file>image/tool/help@2x.png</file>
+        <file>image/tool/rect 11@2x.png</file>
+        <file>image/tool/save@2x.png</file>
+        <file>image/tool/save-as@2x.png</file>
+        <file>image/tool/softwareInfo-1@2x.png</file>
+        <file>image/tool/toolbar@2x.png</file>
+        <file>image/vis/logicBar@2x.png</file>
+        <file>image/vis/logicShow@2x.png</file>
+        <file>image/vis/visBar@2x.png</file>
+        <file>image/info/zoomIn@2x.png</file>
+        <file>image/info/zoomIn-mouseon@2x.png</file>
+        <file>image/info/zoomIn-notselected@2x.png</file>
+        <file>image/info/zoomOut@2x.png</file>
+        <file>image/info/zoomOut-mouseon@2x.png</file>
+        <file>image/info/zoomOut-notselected@2x.png</file>
+        <file>image/icon/close@2x.png</file>
+        <file>image/icon/close-click@2x.png</file>
+        <file>image/icon/close-mouseon@2x.png</file>
+        <file>image/icon/close-notselected@2x.png</file>
+        <file>image/icon/Maximize-restoration@2x.png</file>
+        <file>image/icon/Maximize-restoration-click@2x.png</file>
+        <file>image/icon/Maximize-restoration-mouseon@2x.png</file>
+        <file>image/icon/Maximize-restoration-notselected@2x.png</file>
+        <file>image/icon/minimize@2x.png</file>
+        <file>image/icon/minimize-click@2x.png</file>
+        <file>image/icon/minimize-mouseon@2x.png</file>
+        <file>image/icon/minimize-notselected@2x.png</file>
+        <file>image/tiffPic/chrome.bmp</file>
     </qresource>
 </RCC>

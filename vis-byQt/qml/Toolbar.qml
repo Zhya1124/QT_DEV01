@@ -15,6 +15,6 @@ Rectangle {
 
         width: 1920;
         height: 60;
-        source: "../image/tool/工具栏@2x.png"
+        source: "../image/tool/toolbar@2x.png"
     }
 }

@@ -26,7 +26,7 @@ Rectangle{
         anchors.fill:parent
         width:220
         height:52
-        source:"../image/tool/矩形 11@2x.png";
+        source:"../image/tool/rect 11@2x.png";
 
     Text
     {

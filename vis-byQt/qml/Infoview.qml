@@ -15,11 +15,10 @@ Rectangle {
 
         anchors.top: vInfoview.top;
         anchors.left: vInfoview.left;
-        //z:-2;
         width: 582;
         height: 893;
 
-        source: "../image/info/图像信息栏@2x.png"
+        source: "../image/info/imageInfo@2x.png"
     }
 
     //加载图片
@@ -27,47 +26,117 @@ Rectangle {
     {
         id:info_img02_border;
         color: "transparent";
-        //z:-1;
         width: 456;
-        height: 339;//建议宽度小一些
+        height: 339;
         anchors.top: vInfoview.top;
         anchors.topMargin: 48;
         anchors.left: vInfoview.left;
         anchors.leftMargin: 65;
+        //border.width: 2;//测试用
+        //border.color: "black";
+        clip: true;//可以对图片裁剪
+        //图片加载指示器
+        BusyIndicator
+        {
+            id:busy;
+            running:false;
+            anchors.centerIn: parent;
+            z:2;
+        }
+        //用于显示图片读取失败的信息
+        Text
+        {
+            id:stateLable;
+            visible: true;
+            anchors.left: parent.left;
+            anchors.leftMargin: 5;
+            anchors.top:parent.top;
+            anchors.topMargin: 5;
+            font.family: "微软雅黑";
+            font.pixelSize: 24;
+            text: "";
+            color: "black";
+            z:3;
+        }
         Image {
             id: info_img02;
-
-//            width: 456;
-//            height: 339;//建议宽度小一些
-//            anchors.top: vInfoview.top;
-//            anchors.topMargin: 48;
-//            anchors.left: vInfoview.left;
-//            anchors.leftMargin: 65;
-            //source: info_img;
+            //source: info_img;//这个要载入的图片的地址参数
             source: "../image/guixie.png";
-            x:100;
-            y:100;
-            fillMode: Image.PreserveAspectCrop;
-            clip: true;
+            //source: "../image/tiffPic/chrome.bmp";//测试读bmp
+            //使图片居中，注意这里要实现拖动的话就不能用锚定位。
+            x:info_img02_border.width/2 - info_img02.width/2;
+            y:info_img02_border.height/2 - info_img02.height/2;
+            fillMode: Image.PreserveAspectFit;
+            asynchronous: true;//因为可能需要加载大图片须开启异步模式
             smooth: true;
+
             MouseArea
             {
+                id:info_img02_dragArea;
                 anchors.fill: info_img02;
                 drag.target: info_img02;
                 drag.axis: Drag.XAndYAxis;//设置拖拽的方式
-                drag.minimumX: 0;
-                drag.maximumX: info_img02.width;
-                drag.minimumY: 0;
-                drag.maximumY: info_img02.height;
+                drag.minimumX: (info_img02.width > info_img02_border.width)?(info_img02_border.width - info_img02.width):0;
+                drag.maximumX: (info_img02.width > info_img02_border.width)?0:(info_img02_border.width - info_img02.width);
+                drag.minimumY: (info_img02.height > info_img02_border.height)?(info_img02_border.height - info_img02.height):0;
+                drag.maximumY: (info_img02.height > info_img02_border.height)?0:(info_img02_border.height - info_img02.height);
+                //滚动也可以进行缩放
+                onWheel:
+                {
+                    var delta = wheel.angleDelta.y / 120;
+                    if(delta > 0)//放大
+                    {
+                        if(info_img02.scale<1.6)
+                        info_img02.scale = info_img02.scale/0.9;
+                    }
+                    else
+                    {
+                        if(info_img02.scale>0.05)
+                        info_img02.scale = info_img02.scale*0.9;
+                    }
+                }
+            }
+            onStatusChanged: {
+                    if(info_img02.status === Image.Ready)
+                    {
+                        busy.running = false;
+                    }
+                    else if(info_img02.status === Image.Loading)
+                    {
+                        busy.running = true;
+                    }
+                    else if(info_img02.status === Image.Error)
+                    {
+                        busy.running = false;
+                        stateLable.visible = true;
+                        stateLable.text = "图片读取出错！";
+                    }
             }
         }
     }
+//    Button1{//测试按钮
+//        id: testBtn;
+//        normalPic: "../image/info/zoomIn-notselected@2x.png";
+//        pressedPic: "../image/info/zoomIn@2x.png";
+//        hoverPic: "../image/info/zoomIn-mouseon@2x.png";
 
+//        width: 40;
+//        height: 40;
+
+//        anchors.bottom: info_img02_border.bottom;
+//        anchors.bottomMargin: 5;
+//        anchors.left: info_img02_border.left;
+//        anchors.leftMargin: 5;
+//        onClicked: {
+//            console.log("显示");//*************************************************************************************************
+//            stateLable.text = "宽度："+info_img02.width+"高度："+info_img02.height+"最小x："+info_img02_dragArea.drag.minimumX+"最大x："+info_img02_dragArea.drag.maximumX+"最小y："+info_img02_dragArea.drag.minimumY+"最大y："+info_img02_dragArea.drag.maximumY;
+//        }
+//    }
     Button1{
         id: infoBtn1;
-        normalPic: "../image/info/放大icon-未选中@2x.png";
-        pressedPic: "../image/info/放大icon@2x.png";
-        hoverPic: "../image/info/放大icon-移至icon@2x.png";
+        normalPic: "../image/info/zoomIn-notselected@2x.png";
+        pressedPic: "../image/info/zoomIn@2x.png";
+        hoverPic: "../image/info/zoomIn-mouseon@2x.png";
 
         width: 28;
         height: 28;
@@ -85,9 +154,9 @@ Rectangle {
     }
     Button1{
         id: infoBtn2;
-        normalPic: "../image/info/缩小icon-未选中@2x.png";
-        pressedPic: "../image/info/缩小icon@2x.png";
-        hoverPic: "../image/info/缩小icon-移至icon@2x.png";
+        normalPic: "../image/info/zoomOut-notselected@2x.png";
+        pressedPic: "../image/info/zoomOut@2x.png";
+        hoverPic: "../image/info/zoomOut-mouseon@2x.png";
         width: 28;
         height: 28;
 
@@ -127,7 +196,7 @@ Rectangle {
         anchors.topMargin: 13;
         anchors.left: vInfoview.left;
         anchors.leftMargin: 65;
-        source: "../image/info/属性@2x.png"
+        source: "../image/info/attributes@2x.png"
     }
     Text {
         id: info_text02;
@@ -151,7 +220,7 @@ Rectangle {
         anchors.topMargin: 26;
         anchors.left: info_text02.right;
         anchors.leftMargin: 11;
-        source:  "../image/info/下拉按钮@2x.png";
+        source:  "../image/info/dropBtn@2x.png";
     }
     Image {
         id: info_img05;
@@ -161,6 +230,6 @@ Rectangle {
         anchors.top: info_img03.bottom;
         anchors.left: vInfoview.left;
         anchors.leftMargin: 65;
-        source: "../image/info/属性显示框@2x.png"
+        source: "../image/info/attributesShow@2x.png"
     }
 }

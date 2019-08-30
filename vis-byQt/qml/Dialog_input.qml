@@ -25,7 +25,7 @@ Rectangle
      Image
      {
          id:dialog_bg;
-         source: "../image/dialog/顶栏@2x.png";
+         source: "../image/dialog/top@2x.png";
          anchors.fill:parent;
 
          Image
@@ -37,7 +37,7 @@ Rectangle
              anchors.leftMargin: 23;
              height:24;
              width:24;
-             source: "../image/dialog/取消@2x.png";
+             source: "../image/dialog/cancel@2x.png";
              MouseArea
              {
                  id: dialog_ma1;
@@ -68,7 +68,7 @@ Rectangle
              anchors.rightMargin: 15;
              height:24;
              width:31;
-             source: "../image/dialog/确认@2x.png";
+             source: "../image/dialog/confirm@2x.png";
 
              MouseArea
              {
@@ -97,7 +97,7 @@ Rectangle
        {
            id:content_bg
            anchors.fill:parent;
-           source: "../image/dialog/背景图@2x.png";
+           source: "../image/dialog/background@2x.png";
 
            Text {
                id: name
@@ -126,7 +126,7 @@ Rectangle
                width: 227
                anchors.top:parent.top;
                anchors.left:parent.left;
-               source: "../image/dialog/底@2x.png";
+               source: "../image/dialog/bottom@2x.png";
 
                TextEdit
                {
@@ -172,7 +172,7 @@ Rectangle
                width: 407
                anchors.top:parent.top;
                anchors.left:parent.left;
-               source: "../image/dialog/底@2x.png";
+               source: "../image/dialog/bottom@2x.png";
 
                TextEdit
                {
