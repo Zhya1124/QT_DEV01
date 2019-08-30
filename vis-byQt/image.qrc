@@ -59,5 +59,6 @@
         <file>image/icon/minimize-mouseon@2x.png</file>
         <file>image/icon/minimize-notselected@2x.png</file>
         <file>image/tiffPic/chrome.bmp</file>
+        <file>image/tool/rec-2@2x.png</file>
     </qresource>
 </RCC>
