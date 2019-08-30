@@ -1,6 +1,5 @@
 import QtQuick 2.0
-//import ALPaintedItem 1.0
-//import DrawLine 1.0
+import QtQuick.Controls          2.1
 
 //可视化窗口
 Rectangle {
@@ -61,11 +60,19 @@ Rectangle {
         source: "../image/vis/logicShow@2x.png"
     }
 
+    Pane {
+        anchors.fill: parent
+    }
+
     ForceDirected2{
         id: vFDshow;
 
-        anchors.top: vis_img03.top;
-        anchors.left: vis_img03.left;
+        //anchors.top: vis_img03.top;
+        //anchors.left: vis_img03.left;
+        anchors.top: vFDview.top;
+        anchors.topMargin: 92;
+        anchors.left: vFDview.left;
+        anchors.leftMargin: 30;
 
         width: 1216;
         height: 709;

@@ -10,51 +10,45 @@ import visFD            1.0 as Qan
 import "qrc:/QuickQanava"   as Qan
 import "../d3.min.js"       as D3
 
-Rectangle {
+Item {
     id: forceDirected2;
 
-    //color: "transparent";
-    /*Cirimg{
-        id: cirImg01;
-
-        anchors.top: parent.top;
-        anchors.topMargin: 100;
-        anchors.left: parent.left;
-        anchors.leftMargin: 200;
-
-        cuted_img: "../image/mengli.png";
-        img_height: 100;
-        img_width: 100;
-        progress: 300;
-        arcWidth:2;
-        arcColor: "#50616d";
-        arcBackgroundColor: "#50616d";
-    }*/
     Qan.GraphView{
         id: graphView;
+
         anchors.fill: parent;
         navigable: true;
         clip: true;
+        graph: visgraph;
+
+        /*Image{
+            id: background;
+            width: 1216;
+            height: 709;
+            source: "../image/vis/logicShow@2x.png";
+        }*/
+
         Qan.VisGraph{
-            id: graph;
-            objectName: "graph";
-            connectorEnabled: true;
+            id: visgraph;
+            objectName: "graph"
+            anchors.fill: parent
+            clip: true
+            connectorEnabled: true
             Component.onCompleted: {
-                defaultEdgeStyle.srcShape = Qan.EdgeStyle.None;
-                defaultEdgeStyle.dstShape = Qan.EdgeStyle.None;
-                defaultEdgeStyle.lineType = Qan.EdgeStyle.Straight;
+                var n1 = visgraph.insertVisNode();
+                n1.image = "../image/mengli.png";
+                n1.item.x = 400;
+                n1.item.y = 200;
+                n1.item.style.backRadius = 99;
 
-                var a = graph.insertVisNode();
-                a.image = "../image/mengli.png";
-                a.item.x = 400;
-                a.item.y = 200;
+                var n2 = visgraph.insertVisNode();
+                n2.image = "../image/tianhe.png";
+                n2.item.x = 600;
+                n2.item.y = 300;
+                n2.item.style.backRadius = 99;
 
-                var b = graph.insertVisNode();
-                b.image = "../image/tianhe.png";
-                b.item.x = 600;
-                b.item.y = 300;
-
-                graph.insertEdge(a,b);
+                var l1 = visgraph.insertEdge(n1,n2);
+                l1.item.dstShape = Qan.EdgeStyle.None;
             }
         }
 
