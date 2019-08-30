@@ -4,7 +4,10 @@ import QtQuick.Controls.Styles 1.4
 
 
 /*
-    下拉列表中的按钮 8/22添加 -L
+    8/22添加下拉列表中的按钮 -L
+
+    8/27添加了按钮背景变化
+
 */
 
 Rectangle{
@@ -16,6 +19,11 @@ Rectangle{
     property int icon_topMargin;
     property int icon_width;
     property int icon_height;
+
+    property var hover_bg:"../image/tool/rect 11@2x.png";
+    property var pressed_bg:"../image/tool/rect 11@2x.png";
+    property var normal_bg:"../image/tool/rec-2@2x.png";
+
     signal btn3_clicked;//点击信号
 
     height: 52;
@@ -24,9 +32,9 @@ Rectangle{
     {
         id:vbutton_bg
         anchors.fill:parent
-        width:220
-        height:52
-        source:"../image/tool/rect 11@2x.png";
+
+        state: "normal";
+
 
     Text
     {
@@ -62,9 +70,81 @@ Rectangle{
 
         anchors.fill: parent;
 
+
+        acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MidButton;
+        hoverEnabled: true;
+
         onClicked: {
             btn3_clicked();
         }
+
+        onPressed:
+        {
+
+
+            vbutton_bg.state = "pressed";
+        }
+
+        onReleased:
+        {
+            vbutton_bg.state = "normal";
+        }
+
+        onEntered:
+        {
+            if(vbutton_bg.state === "normal")
+            {
+               vbutton_bg.state = "hover";
+            }
+
+            /* state === "normal" ? state = "hover" : state = "pressed"; */
+        }
+
+        onExited:
+        {
+            if(vbutton_bg.state === "hover")
+            {
+                vbutton_bg.state = "normal";
+            }
+
+            /* state === "hover" ? state = "normal" : state = "pressed"; */
+        }
+
+        onWheel:
+        {
+
+        }
     }
-    }
+
+    states: [
+        State
+        {
+            name: "normal";
+            PropertyChanges
+            {
+                target: vbutton_bg;
+                source: normal_bg;
+            }
+        },
+        State
+        {
+            name: "pressed";
+            PropertyChanges
+            {
+                target: vbutton_bg;
+                source: pressed_bg;
+            }
+        },
+        State
+        {
+            name: "hover";
+            PropertyChanges
+            {
+                target: vbutton_bg;
+                source: hover_bg;
+            }
+        }
+    ]
 }
+}
+
