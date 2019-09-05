@@ -45,6 +45,8 @@ import "qrc:/QuickQanava" as Qan
  * \note VisualConnector visible property is automatically set to false until it has been associed to an existing "host" node
  *       or port by setting property \c sourceNode or \c sourcePort (or Qan.Graph.setConnectorSource() for default connector).
  */
+
+//右上角的圆圈，用于添加node间连接————by zmz
 Qan.Connector {
     id: visualConnector
 

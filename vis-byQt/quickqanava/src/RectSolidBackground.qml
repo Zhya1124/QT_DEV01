@@ -56,36 +56,4 @@ Rectangle {
     antialiasing: true
     opacity: nodeItem.style.backOpacity
     // Note: Do not enable layer to avoid aliasing at high scale
-
-    /*cuted_img:"E:\QT\project\vis-byQt\image\mengli.png";
-    width: 100;
-    height: 100;
-    Image{
-        id: cir_Img;
-        smooth: true;
-        visible: false;
-        anchors.fill: parent;
-        source: cuted_img;
-        sourceSize: Qt.size(parent.size, parent.size)
-        antialiasing: true
-    }
-
-    Rectangle {
-        id: cir_mask
-        color: "black"
-        anchors.fill: parent
-        radius: width/2
-        visible: false
-        antialiasing: true
-        smooth: true
-    }
-
-    OpacityMask {
-        id: mask_image
-        anchors.fill: cir_Img
-        source:cir_Img
-        maskSource: cir_mask
-        visible: true
-        antialiasing: true
-    }*/
 }

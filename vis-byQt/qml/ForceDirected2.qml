@@ -39,16 +39,29 @@ Item {
                 n1.image = "../image/mengli.png";
                 n1.item.x = 400;
                 n1.item.y = 200;
-                n1.item.style.backRadius = 99;
+                //n1.item.z = 3;
+                //n1.item.draggable = false;
+                //n1.item.resizable = false;
+                //n1.item.selected = false;
+                //n1.locked = "locked";
+                var n1p1 = visgraph.insertPort(n1, Qan.NodeItem.Bottom);
 
                 var n2 = visgraph.insertVisNode();
                 n2.image = "../image/tianhe.png";
                 n2.item.x = 600;
                 n2.item.y = 300;
-                n2.item.style.backRadius = 99;
+                //n2.item.z = 3;
+                //n2.item.draggable = false;
+                //n2.item.resizable = false;
+                //n2.item.selected = false;
+                //n2.locked = "locked";
+                var n2p1 = visgraph.insertPort(n2, Qan.NodeItem.Bottom);
 
                 var l1 = visgraph.insertEdge(n1,n2);
                 l1.item.dstShape = Qan.EdgeStyle.None;
+                visgraph.bindEdgeSource(l1, n1p1);
+                visgraph.bindEdgeDestination(l1, n2p1);
+                //l1.item.z = 0;
             }
         }
 

@@ -35,6 +35,7 @@ import QtQuick.Controls 2.1
 
 import QuickQanava 2.0 as Qan
 
+//定义了port标签的位置————by zmz
 Qan.PortItem {
     id: portItem
     width: 16
@@ -123,13 +124,13 @@ Qan.PortItem {
         id: labelPane
         opacity: 0.80
         padding: 0
-        z: 2
+        z: 1
         width: label.implicitWidth
         height: label.implicitHeight
 
         Label {
             id: label
-            z: 3
+            z: 2
             text: portItem.label
             visible: true
         }

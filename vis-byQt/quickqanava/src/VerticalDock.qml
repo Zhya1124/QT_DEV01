@@ -28,10 +28,11 @@ import QtQuick.Layouts 1.1
 
 import QuickQanava 2.0 as Qan
 
+//隐藏port连接圈————by zmz 2019.09.04
 ColumnLayout {
     id: root
     spacing: 20
-    z: 1.5   // Selection item z=1.0, dock must be on top of selection
+    z: -2   // Selection item z=1.0, dock must be on top of selection
     states: [
         State {
             name: "left"

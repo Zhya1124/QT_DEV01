@@ -28,10 +28,11 @@ import QtQuick.Layouts 1.1
 
 import QuickQanava 2.0 as Qan
 
+//隐藏port连接圈————by zmz 2019.09.04
 RowLayout {
     id: root
     spacing: 15
-    z: 1.5 // Selection item z=1.0, dock must be on top of selection
+    z: -2 // Selection item z=1.0, dock must be on top of selection
     states: [
         State {
             name: "top"
@@ -57,14 +58,15 @@ RowLayout {
             AnchorChanges {
                 target: root
                 anchors {
-                    top: hostNodeItem.bottom
+                    //top: hostNodeItem.bottom
                     horizontalCenter: hostNodeItem.horizontalCenter
+                    verticalCenter: hostNodeItem.verticalCenter
                 }
             }
 
             PropertyChanges {
                 target: root
-                topMargin: root.topMargin
+                topMargin: root.topMargin//port——注意是否需要修改
             }
         }
     ]
