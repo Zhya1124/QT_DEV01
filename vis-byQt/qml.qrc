@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>qml/Demo.qml</file>
         <file>qml/main.qml</file>
-        <file>qml/ForceDirected.qml</file>
         <file>qml/relation.json</file>
         <file>qml/bubble.qml</file>
         <file>qml/bubbles.qml</file>

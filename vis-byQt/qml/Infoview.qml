@@ -37,8 +37,6 @@ Rectangle {
         anchors.topMargin: 48;
         anchors.left: vInfoview.left;
         anchors.leftMargin: 65;
-        //border.width: 2;//测试用
-        //border.color: "black";
         clip: true;//可以对图片裁剪
         //图片加载指示器
         BusyIndicator
@@ -67,12 +65,7 @@ Rectangle {
         {
             id:info_img02_com;
         Image {
-                id: info_img02;//图片
-                //source: info_img;//这个要载入的图片的地址参数
-                //
-                //source: "../image/tiffPic/chrome.bmp";//测试读bmp
-                //source: "file:///D:/Picture/Clothes/978-7-5180-1663-1-100.tif";//本地读取tiff
-                //source: "../image/tiffPic/978-7-5180-1663-1-65.tif";//相对路径读tiff***失败
+                id: info_img02;
                 //使图片居中，注意这里要实现拖动的话就不能用锚定位。
                 x:info_img02_border.width/2 - info_img02.width/2;
                 y:info_img02_border.height/2 - info_img02.height/2;
@@ -102,7 +95,6 @@ Rectangle {
         {
             id:info_img02_loader;
             sourceComponent: info_img02_com;
-            //anchors.fill:parent;
             onLoaded: {
                 item.source = "../image/info/image_notloaded@2x.png";//初始图框
             }
