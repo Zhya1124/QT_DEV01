@@ -6,8 +6,12 @@ Rectangle {
     id: vInfoview;
 
     property string info_name;
-    property url info_img;
-
+    property var info_img;
+    //signal imgSource;
+    onInfo_imgChanged: {
+            info_img02_loader.item.source = info_img;
+            info_text01_loader.item.text = info_name;
+    }
     width: 582;
     //背景
     Image {
@@ -22,8 +26,9 @@ Rectangle {
     }
 
     //加载图片
-    Rectangle
-    {
+
+        Rectangle
+     {
         id:info_img02_border;
         color: "transparent";
         width: 456;
@@ -58,65 +63,79 @@ Rectangle {
             color: "black";
             z:3;
         }
+        Component
+        {
+            id:info_img02_com;
         Image {
-            id: info_img02;
-            //source: info_img;//这个要载入的图片的地址参数
-            source: "../image/guixie.png";
-            //source: "../image/tiffPic/chrome.bmp";//测试读bmp
-            //source: "file:///D:/Picture/Clothes/978-7-5180-1663-1-100.tif";//本地读取tiff
-            //source: "../image/tiffPic/978-7-5180-1663-1-65.tif";//相对路径读tiff***失败
-            //使图片居中，注意这里要实现拖动的话就不能用锚定位。
-            x:info_img02_border.width/2 - info_img02.width/2;
-            y:info_img02_border.height/2 - info_img02.height/2;
-            fillMode: Image.PreserveAspectFit;
-            asynchronous: true;//因为可能需要加载大图片须开启异步模式
-            smooth: true;
+                id: info_img02;//图片
+                //source: info_img;//这个要载入的图片的地址参数
+                //
+                //source: "../image/tiffPic/chrome.bmp";//测试读bmp
+                //source: "file:///D:/Picture/Clothes/978-7-5180-1663-1-100.tif";//本地读取tiff
+                //source: "../image/tiffPic/978-7-5180-1663-1-65.tif";//相对路径读tiff***失败
+                //使图片居中，注意这里要实现拖动的话就不能用锚定位。
+                x:info_img02_border.width/2 - info_img02.width/2;
+                y:info_img02_border.height/2 - info_img02.height/2;
+                fillMode: Image.PreserveAspectFit;
+                asynchronous: true;//因为可能需要加载大图片须开启异步模式
+                smooth: true;
 
-
-            onStatusChanged: {
-                    if(info_img02.status === Image.Ready)
-                    {
-                        busy.running = false;
-                    }
-                    else if(info_img02.status === Image.Loading)
-                    {
-                        busy.running = true;
-                    }
-                    else if(info_img02.status === Image.Error)
-                    {
-                        busy.running = false;
-                        stateLable.visible = true;
-                        stateLable.text = "图片读取出错！";
-                    }
+                onStatusChanged: {
+                        if(info_img02.status === Image.Ready)
+                        {
+                            busy.running = false;
+                        }
+                        else if(info_img02.status === Image.Loading)
+                        {
+                            busy.running = true;
+                        }
+                        else if(info_img02.status === Image.Error)
+                        {
+                            busy.running = false;
+                            stateLable.visible = true;
+                            stateLable.text = "图片读取出错！";
+                        }
+                }
             }
         }
-        MouseArea//拖拽区域
+        Loader//加载图片组件
+        {
+            id:info_img02_loader;
+            sourceComponent: info_img02_com;
+            //anchors.fill:parent;
+            onLoaded: {
+                item.source = "../image/info/image_notloaded@2x.png";//初始图框
+            }
+        }
+        MouseArea//拖拽放缩区域
         {
             id:info_img02_dragArea;
-            anchors.fill: info_img02;
-            drag.target: info_img02;
+            anchors.fill: info_img02_border;
+            drag.target: info_img02_loader.item;
             drag.axis: Drag.XAndYAxis;//设置拖拽的方式
-            drag.minimumX: (info_img02.width > info_img02_border.width)?(info_img02_border.width - info_img02.width):0;
-            drag.maximumX: (info_img02.width > info_img02_border.width)?0:(info_img02_border.width - info_img02.width);
-            drag.minimumY: (info_img02.height > info_img02_border.height)?(info_img02_border.height - info_img02.height):0;
-            drag.maximumY: (info_img02.height > info_img02_border.height)?0:(info_img02_border.height - info_img02.height);
+            drag.minimumX: (info_img02_loader.item.width > info_img02_border.width)?(info_img02_border.width - info_img02_loader.item.width):0;
+            drag.maximumX: (info_img02_loader.item.width > info_img02_border.width)?0:(info_img02_border.width - info_img02_loader.item.width);
+            drag.minimumY: (info_img02_loader.item.height > info_img02_border.height)?(info_img02_border.height - info_img02_loader.item.height):0;
+            drag.maximumY: (info_img02_loader.item.height > info_img02_border.height)?0:(info_img02_border.height - info_img02_loader.item.height);
             //滚动也可以进行缩放
             onWheel:
             {
                 var delta = wheel.angleDelta.y / 120;
                 if(delta > 0)//放大
                 {
-                    if(info_img02.scale<1.6)
-                    info_img02.scale = info_img02.scale/0.9;
+                    if(info_img02_loader.item.scale<1.6)
+                    info_img02_loader.item.scale = info_img02_loader.item.scale/0.9;
                 }
                 else
                 {
-                    if(info_img02.scale>0.05)
-                    info_img02.scale = info_img02.scale*0.9;
+                    if(info_img02_loader.item.scale>0.05)
+                    info_img02_loader.item.scale = info_img02_loader.item.scale*0.9;
                 }
             }
         }
     }
+
+
 //    Button1{//测试按钮
 //        id: testBtn;
 //        normalPic: "../image/info/zoomIn-notselected@2x.png";
@@ -150,8 +169,8 @@ Rectangle {
         anchors.leftMargin: 353;
         onClicked: {
             console.log("放大")//*************************************************************************************************
-            if(info_img02.scale<1.6)
-            info_img02.scale += 0.05;
+            if(info_img02_loader.item.scale<1.6)
+            info_img02_loader.item.scale += 0.05;
         }
 
     }
@@ -169,25 +188,34 @@ Rectangle {
         anchors.leftMargin: 18;
         onClicked: {
             console.log("缩小")//*************************************************************************************************
-            if(info_img02.scale>0.05)
-            info_img02.scale -= 0.05;
+            if(info_img02_loader.item.scale>0.05)
+            info_img02_loader.item.scale -= 0.05;
         }
     }
 
     //图片名称
-    Text{
-        id: info_text01;
-
+    Component
+    {
+        id:info_text01_com;
+        Text{
+            id: info_text01;
+            color: "#ffffff";
+            font.pointSize: 25;
+            font.family: "simplex";
+        }
+    }
+    Loader//加载图片名称
+    {
+        id:info_text01_loader;
         anchors.top: info_img02_border.bottom;
         anchors.topMargin: 16;
         anchors.horizontalCenter: vInfoview.horizontalCenter;
-
-        color: "#ffffff";
-        font.pointSize: 25;
-        font.family: "simplex";
-        text: info_name;
-        //text: "图片名称";
+        sourceComponent:info_text01_com;
+        onLoaded: {
+            item.text = "显示图片名称";
+        }
     }
+
 
     //属性栏
     Image {
@@ -195,7 +223,7 @@ Rectangle {
 
         width: 456;
         height: 60;
-        anchors.top: info_text01.bottom;
+        anchors.top: info_text01_loader.bottom;
         anchors.topMargin: 13;
         anchors.left: vInfoview.left;
         anchors.leftMargin: 65;

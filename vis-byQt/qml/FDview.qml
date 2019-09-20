@@ -1,10 +1,13 @@
 import QtQuick 2.0
 import QtQuick.Controls          2.1
-
+/*
+9-19传参过程2
+*/
 //可视化窗口
 Rectangle {
     id: vFDview;
-
+    property var fd_urlout;
+    property var fd_atrout;
     //property alias painter: painter;
 
     //标签栏背景
@@ -66,7 +69,6 @@ Rectangle {
 
     ForceDirected2{
         id: vFDshow;
-
         //anchors.top: vis_img03.top;
         //anchors.left: vis_img03.left;
         anchors.top: vFDview.top;
@@ -76,6 +78,11 @@ Rectangle {
 
         width: 1216;
         height: 709;
+        onImgoutChanged: {  //imgout改变时给FD相应的参数赋值
+            fd_urlout = imgout;
+            fd_atrout = atrout;
+            console.log("FD图片url:"+fd_urlout+"图片名称:"+fd_atrout);//test
+        }
     }
 
     /*Component.onCompleted: {

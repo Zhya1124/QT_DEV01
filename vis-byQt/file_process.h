@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QFile>
 #include <QTextStream>
-
+#include <vector>
 //用来读取json文件
 #include <QJsonDocument>
 #include <QJsonParseError>
@@ -55,6 +55,9 @@ private:
 
     QString filePath;
     QJsonObject root;
+    std::vector<int> index_save;
+    std::vector<std::string> img_save;
+    std::vector<std::string> name_save;
 
 };
 

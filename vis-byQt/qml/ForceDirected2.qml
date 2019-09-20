@@ -9,13 +9,15 @@ import QuickQanava      2.0 as Qan
 import visFD            1.0 as Qan
 import "qrc:/QuickQanava"   as Qan
 import "../d3.min.js"       as D3
-
+/*
+9-19传参过程1
+*/
 Item {
     id: forceDirected2;
-
+    property var imgout;
+    property var atrout;
     Qan.GraphView{
         id: graphView;
-
         anchors.fill: parent;
         navigable: true;
         clip: true;
@@ -34,13 +36,16 @@ Item {
             anchors.fill: parent
             clip: true
             connectorEnabled: true
+            signal urlPicked(var url,var atr);//获取图片url以及图片名称的信号量
             Component.onCompleted: {
                 var n1 = visgraph.insertVisNode();
                 n1.image = "../image/mengli.png";
+
+                n1.label = "梦璃";
                 n1.item.x = 400;
                 n1.item.y = 200;
                 //n1.item.z = 3;
-                //n1.item.draggable = false;
+                //n1.item.draggable = false;A
                 //n1.item.resizable = false;
                 //n1.item.selected = false;
                 //n1.locked = "locked";
@@ -48,6 +53,7 @@ Item {
 
                 var n2 = visgraph.insertVisNode();
                 n2.image = "../image/tianhe.png";
+                n2.label = "天河";
                 n2.item.x = 600;
                 n2.item.y = 300;
                 //n2.item.z = 3;
@@ -62,6 +68,19 @@ Item {
                 visgraph.bindEdgeSource(l1, n1p1);
                 visgraph.bindEdgeDestination(l1, n2p1);
                 //l1.item.z = 0;
+            }
+            onNodeClicked:
+            {
+                visgraph.urlPicked(node.image, node.label);//通过点击发出信号
+                console.log("图片url:"+imgout+"图片名称:"+atrout);//test
+            }
+            Connections//连接信号
+            {
+                target:visgraph;
+                onUrlPicked:{
+                    imgout = url;
+                    atrout = atr;
+                }
             }
         }
 

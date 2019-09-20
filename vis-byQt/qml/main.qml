@@ -394,6 +394,10 @@ Window {
         anchors.topMargin: 21;
         anchors.left: parent.left;
         anchors.leftMargin: 607;
+        onFd_urloutChanged: { //传参3
+            info01.info_img = fd_urlout;
+            info01.info_name = fd_atrout;
+        }
     }
 
     //信息栏
@@ -405,10 +409,9 @@ Window {
         anchors.left: parent.left;
         anchors.leftMargin: 20;
 
-        info_img: "../image/info/image_notloaded@2x.png";
-        info_name: "显示纹样名称";
+        //info_img: vis01.cirimg_url;
+        //info_name: "显示纹样名称";
     }
-
     /*Cirimg{
         id: cirImg01;
 
